@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Test</title>
+    <!-- <script src="Analytics.js"></script> -->
+     <script src="AnalTest.js"></script>
+</head>
+<body>
+    <h1>Analytics Test</h1>
+    <button id="showData">Show Analytics Data</button>
+    <button id="clearData">Clear Data</button>
+    <a href="#" target="_blank">Fake Link</a>
+    <pre id="dataDisplay"></pre>
+
+    <script>
+        // Initialize the analytics
+        var analytics = new Analytics();
+
+        // Show stored analytics data
+        document.getElementById('showData').addEventListener('click', function() {
+            var dataDisplay = document.getElementById('dataDisplay');
+            var events = JSON.parse(localStorage.getItem('analyticsData')) || [];
+            dataDisplay.textContent = JSON.stringify(events, null, 2);
+        });
+
+        // Clear stored analytics data
+        document.getElementById('clearData').addEventListener('click', function() {
+            var dataDisplay = document.getElementById('dataDisplay');
+            localStorage.clear('analyticsData');
+            dataDisplay.textContent = '';
+
+            // Initialize the analytics
+            var analytics = new Analytics();
+        });
+    </script>
+</body>
+</html>
